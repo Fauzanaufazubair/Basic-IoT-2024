@@ -1,0 +1,29 @@
+#define BLYNK_PRINT Serial 
+#include <ESP8266WiFi.h> 
+#include <BlynkSimpleEsp8266.h> 
+ 
+#define BLYNK_AUTH_TOKEN "0NLr40AuXZQ-pgrIqphFQf51-8u8XBBf" 
+ 
+char auth[] = BLYNK_AUTH_TOKEN; 
+char ssid[] = "YourNetworkName"; 
+char pass[] = "YourPassword"; 
+ 
+BLYNK_WRITE (V0){ 
+  digitalWrite (D0,param.asInt()); 
+} 
+BLYNK_WRITE (V1){
+  digitalWrite (D1,param.aslnt());
+}
+void setup() 
+{ 
+  // Debug console 
+  Serial.begin(9600); 
+ pinMode (D0, OUTPUT); 
+ pinMode (D1, OUTPUT);
+  Blynk.begin(auth, ssid, pass, "blynk.cloud", 80); 
+} 
+ 
+void loop() 
+{ 
+  Blynk.run(); 
+}
